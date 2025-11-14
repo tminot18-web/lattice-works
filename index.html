@@ -694,19 +694,19 @@
 
         <p class="hero-subtitle">
           Lattice Works is a small, anonymous studio that designs and ships
-          <b>web apps, dashboards, and internal systems</b> with an explicit bias
-          toward speed and production value. The output looks like a team built it —
-          the process runs like one operator.
+          <b>web apps, dashboards, and internal systems</b> with a bias toward speed
+          and production value. The output looks like a team built it — the process
+          runs like one operator.
         </p>
 
         <div class="hero-metrics">
           <div class="metric">
-            <strong>Full builds, treated as systems</strong>
-            <span>From rough notes → architecture → production with clean handoff.</span>
+            <strong>End-to-end, treated as systems</strong>
+            <span>From rough notes → architecture → production, with a clean handoff path baked in.</span>
           </div>
           <div class="metric">
             <strong>Weeks, not quarters</strong>
-            <span>Work is scoped into tight phases designed to ship independently.</span>
+            <span>Work is sliced into tight phases that can ship independently without waiting on a big release.</span>
           </div>
         </div>
 
@@ -725,13 +725,13 @@
         </div>
 
         <p class="hero-note">
-          No filler pages, no brand theater — just product, architecture, and code aimed at shipping.
+          No filler pages, no brand theater — just product, architecture, and code aligned on shipping.
         </p>
 
         <div class="hero-list">
           <div class="chip">
             <span class="chip-label">01</span>
-            <span>Trading & screener dashboards wired to real data</span>
+            <span>Trading & screener dashboards ready to plug into live data</span>
           </div>
           <div class="chip">
             <span class="chip-label">02</span>
@@ -739,7 +739,7 @@
           </div>
           <div class="chip">
             <span class="chip-label">03</span>
-            <span>MVP web apps that feel like products, not prototypes</span>
+            <span>MVP web apps that feel like products, not throwaway prototypes</span>
           </div>
           <div class="chip">
             <span class="chip-label">04</span>
@@ -762,7 +762,7 @@
           <div class="section-label">Focus</div>
           <div class="mini-title">Where Lattice Works spends time</div>
           <div class="mini-sub">
-            A narrow band of work that compounds. Each project sharpens the next.
+            A narrow band of product and systems work, reused and refined across projects.
           </div>
           <div class="pill-grid">
             <span class="pill-small">Web apps & product UIs</span>
@@ -776,7 +776,7 @@
         <div class="stack-section">
           <div class="mini-title">What “high-production” means here</div>
           <div class="mini-sub">
-            Not a hacked-together prototype. A build you’re comfortable putting in front of customers or a team.
+            Not a hacked-together demo. A build you’re comfortable putting in front of customers or a team.
           </div>
           <div class="pill-grid">
             <span class="pill-small">Clean, modern frontends</span>
@@ -790,11 +790,11 @@
         <div class="stack-section">
           <div class="mini-title">Typical stack</div>
           <div class="mini-sub">
-            Tools adjust per project. The principles — clarity, speed, stability — don’t.
+            Stack flexes per project. The constant is clear boundaries and predictable behavior.
           </div>
           <div class="pill-grid">
             <span class="pill-small">TypeScript / JavaScript</span>
-            <span class="pill-small">React / Next.js or similar</span>
+            <span class="pill-small">Static sites & React frontends</span>
             <span class="pill-small">FastAPI / Node APIs</span>
             <span class="pill-small">PostgreSQL / SQL</span>
             <span class="pill-small">Stripe / payment rails</span>
@@ -809,8 +809,8 @@
       <article class="card">
         <h2>How projects run</h2>
         <p>
-          The aim is to get from “this is in my head” to “this is live” without
-          dragging a committee through every decision.
+          The goal is simple: move from “this lives in my head” to “this is live”
+          without dragging a committee through every decision.
         </p>
         <ul class="steps">
           <li class="step">
@@ -839,7 +839,7 @@
             <div>
               <div class="step-title">Phases & pricing</div>
               <div class="step-text">
-                Work is split into clear phases (e.g., core UI, core backend,
+                Work is split into clear phases (for example: core UI, core backend,
                 enrichment features). Each has a fixed price and concrete acceptance
                 criteria so it’s obvious when a phase is “done.”
               </div>
@@ -860,9 +860,9 @@
             <div>
               <div class="step-title">Handoff</div>
               <div class="step-text">
-                Deliverables include the code, basic docs, and notes for whoever owns
-                it next — an internal team, another vendor, or a later phase with
-                Lattice Works.
+                Deliverables include code, a basic implementation note, and guidance
+                for whoever owns it next — an internal team, another vendor, or a
+                later phase with Lattice Works.
               </div>
             </div>
           </li>
@@ -883,24 +883,26 @@
                 Dashboard • crypto wallet checks • review & approval workflow
               </div>
               <p>
-                Built an MVP referral dashboard that lets a team review, validate,
-                and approve payout requests tied to wallet activity. The system was
-                designed to be integrated into existing payout rails, giving the
-                client a concrete interface and architecture to plug into their
-                production stack when ready.
+                Built a functional referral dashboard MVP that lets a team review,
+                validate, and approve payout requests tied to wallet activity. The
+                dashboard and flows are fully implemented as an interface and system
+                design. Integration with the client’s internal payout rails and
+                automated fake-request safeguards is planned but not yet deployed,
+                so the current build serves as a concrete, ready-to-integrate phase one.
               </p>
             </li>
             <li class="project-item">
               <h3>Multi-asset trading screener surface</h3>
               <div class="project-meta">
-                Landing page • early member dashboard UI • backend in progress
+                Landing page • early member dashboard UI • backend just starting
               </div>
               <p>
                 Designed and implemented the front end for a screener product:
-                a marketing site and an initial member dashboard UI for screening
-                FX/crypto/equities. Backend work is underway, with models and
-                endpoints being built to support phased rollout of filters and
-                premium tiers.
+                a marketing site plus an initial member dashboard UI for screening
+                FX/crypto/equities. The dashboard frontend is partially complete and
+                currently runs on mocked data while backend models and endpoints are
+                being built. The work is structured so real data and premium tiers
+                can be wired in as a next phase rather than a full rebuild.
               </p>
             </li>
             <li class="project-item">
@@ -911,7 +913,9 @@
               <p>
                 Replaced a tangle of spreadsheets and ad-hoc scripts with focused
                 dashboards and control panels so founders could see what was going on,
-                adjust key values, and stop asking devs for one-off reports.
+                adjust key values, and stop requesting one-off reports from devs.
+                Each tool was scoped to solve a specific operational problem, then
+                documented for future extension.
               </p>
             </li>
           </ul>
@@ -937,7 +941,7 @@
               <p>
                 Scope-dependent, but the bias is toward short, complete phases.
                 A focused dashboard or v1 web app typically lands in weeks, not
-                quarters, when decisions are made quickly.
+                quarters, when decisions are made quickly and ownership stays tight.
               </p>
             </li>
             <li class="faq-item">
@@ -960,8 +964,8 @@
               <h3>Do you only do greenfield work?</h3>
               <p>
                 No. Plugging a new system into an existing stack or turning a rough
-                MVP into something production-grade is common, as long as the
-                boundaries and responsibilities are clear.
+                MVP into something closer to production-grade is common, as long as
+                the boundaries and responsibilities are clear.
               </p>
             </li>
           </ul>
@@ -973,7 +977,7 @@
     <section class="contact-card" id="contact">
       <div class="contact-header">
         <h2>Open to one-off builds and phased engagements</h2>
-      <div class="badge">Built to move fast without blowing things up</div>
+        <div class="badge">Built to move fast without blowing things up</div>
       </div>
       <p class="contact-body">
         If you already have a rough idea of what you want, a short written brief is
