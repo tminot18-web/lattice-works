@@ -342,41 +342,9 @@
       border: 1px dashed rgba(56,189,248,0.5);
     }
 
-    .hero-orbit-badge {
-      position: absolute;
-      bottom: 22px;
-      right: 22px;
-      background: rgba(15,23,42,0.98);
-      border-radius: 16px;
-      padding: 8px 10px;
-      border: 1px solid rgba(56,189,248,0.7);
-      font-size: 11px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 170px;
-      z-index: 3;
-    }
-
-    .hero-orbit-badge span:first-child {
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: var(--muted);
-      font-size: 9px;
-    }
-
-    .hero-orbit-badge span:last-child {
-      color: #e5e7eb;
-      font-size: 11px;
-    }
-
     @media (max-width: 860px) {
       .hero-orbit {
         display: none;
-      }
-      .hero-orbit-badge {
-        position: static;
-        margin-top: 14px;
       }
     }
 
@@ -753,10 +721,6 @@
 
         <div class="hero-orbit">
           <div class="hero-orbit-inner"></div>
-        </div>
-        <div class="hero-orbit-badge">
-          <span>Working style</span>
-          <span>Written-first, low-ceremony, focused on getting a real build on a screen quickly.</span>
         </div>
       </section>
 
