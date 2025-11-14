@@ -344,9 +344,9 @@
 
     .hero-orbit-badge {
       position: absolute;
-      right: 6%;
-      top: 54%;
-      transform: translateY(-50%);
+      bottom: 18px;
+      right: 18px;
+      transform: none;
       background: rgba(15,23,42,0.98);
       border-radius: 16px;
       padding: 8px 10px;
@@ -356,6 +356,7 @@
       flex-direction: column;
       gap: 2px;
       min-width: 160px;
+      z-index: 1;
     }
 
     .hero-orbit-badge span:first-child {
@@ -373,6 +374,10 @@
     @media (max-width: 860px) {
       .hero-orbit {
         display: none;
+      }
+      .hero-orbit-badge {
+        position: static;
+        margin-top: 14px;
       }
     }
 
@@ -749,10 +754,10 @@
 
         <div class="hero-orbit">
           <div class="hero-orbit-inner"></div>
-          <div class="hero-orbit-badge">
-            <span>Working style</span>
-            <span>Written-first, low-ceremony, focused on getting a real build on a screen quickly.</span>
-          </div>
+        </div>
+        <div class="hero-orbit-badge">
+          <span>Working style</span>
+          <span>Written-first, low-ceremony, focused on getting a real build on a screen quickly.</span>
         </div>
       </section>
 
