@@ -3,159 +3,960 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lattice Works – Fast, High-Production Software Systems</title>
-  <!-- nudge deploy -->
+  <title>Lattice Works – Backend Systems & Automation Studio</title>
+  <meta
+    name="description"
+    content="Lattice Works is a small, anonymous studio that builds backend systems, dashboards, and automations for startups and agencies. Async-first, production-grade, delivered in weeks."
+  />
   <style>
     :root {
       --bg: #020617;
-      --bg-alt: #020617;
-      --card: rgba(255, 255, 255, 0.03);
-      --text: #e2e8f0;
-      --text-dim: #94a3b8;
+      --bg-alt: #030712;
+      --card: rgba(15, 23, 42, 0.96);
+      --card-soft: rgba(15, 23, 42, 0.85);
+      --border: rgba(148, 163, 184, 0.35);
+      --border-soft: rgba(51, 65, 85, 0.8);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
       --accent: #60a5fa;
-      --border: rgba(255, 255, 255, 0.08);
-      --tag-bg: rgba(255, 255, 255, 0.06);
+      --accent-soft: rgba(37, 99, 235, 0.24);
+      --accent-strong: #38bdf8;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.75);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", "Segoe UI", sans-serif;
     }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background:
+        radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
       color: var(--text);
-      line-height: 1.5;
-      padding: 40px;
+      line-height: 1.6;
+      min-height: 100vh;
     }
-    .container {
-      max-width: 1200px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 32px 18px 56px;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
-    }
-    h1 {
-      font-size: 48px;
-      line-height: 1.2;
-      margin: 0 0 20px 0;
-    }
-    h1 .accent {
-      color: var(--accent);
-    }
-    p {
-      color: var(--text-dim);
-      max-width: 600px;
-    }
-    .hero-card {
-      background: var(--card);
-      padding: 32px;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      margin-bottom: 40px;
-      position: relative;
-    }
-    .tag {
-      display: inline-block;
-      background: var(--tag-bg);
-      padding: 6px 14px;
-      border-radius: 14px;
-      font-size: 13px;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-    .cta-row {
-      display: flex;
       gap: 16px;
-      margin: 24px 0;
+      margin-bottom: 32px;
     }
-    .cta {
-      background: var(--accent);
-      color: #000;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 15px;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .cta.secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 20%, #38bdf8 0, #0ea5e9 36%, #020617 100%);
+      box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.7),
+        0 0 40px rgba(56, 189, 248, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      color: #e5e7eb;
     }
-    section {
-      margin-top: 60px;
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
-    h2 {
-      font-size: 26px;
+
+    .brand-text span:first-child {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-text span:last-child {
+      font-size: 14px;
+      color: #e5e7eb;
+      opacity: 0.92;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.92);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-strong {
+      border-color: rgba(56, 189, 248, 0.8);
+      color: #bfdbfe;
+      background: rgba(8, 47, 73, 0.85);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.24);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .tag-row {
+        justify-content: flex-start;
+      }
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.4fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 880px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-card {
+      background:
+        radial-gradient(circle at top left, #1f2937 0, #020617 55%);
+      border-radius: 28px;
+      padding: 24px 22px 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-tag-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.8);
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 650;
+      letter-spacing: 0.01em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      color: #7dd3fc;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 38rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-subtitle b {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 16px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 260px;
+    }
+
+    .metric strong {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-bottom: 16px;
     }
-    .pill {
-      display: inline-block;
-      background: var(--tag-bg);
-      padding: 8px 14px;
-      border-radius: 16px;
-      margin: 6px 6px 6px 0;
+
+    .btn-primary {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: #020617;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 14px 30px rgba(8, 47, 73, 0.85);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary span:first-child {
+      font-size: 15px;
+    }
+
+    .btn-secondary {
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.97);
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-secondary span:first-child {
       font-size: 14px;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+
+    .hero-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 7px 11px;
+      border: 1px solid rgba(148, 163, 184, 0.42);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 11px;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      backdrop-filter: blur(14px);
+    }
+
+    .chip-label {
+      height: 18px;
+      min-width: 18px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--accent-strong);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.3);
+      right: -90px;
+      top: -80px;
+      opacity: 0.7;
+    }
+
+    .hero-orbit-inner {
+      position: absolute;
+      inset: 26px;
+      border-radius: inherit;
+      border: 1px dashed rgba(56, 189, 248, 0.5);
+    }
+
+    @media (max-width: 880px) {
+      .hero-orbit {
+        display: none;
+      }
+    }
+
+    .side-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .mini-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .mini-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill-small {
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.97);
+    }
+
+    .side-section + .side-section {
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      padding-top: 10px;
+    }
+
+    .grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.8fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 880px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 14px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .steps {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .step-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: #e5e7eb;
+    }
+
+    .step-text {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .project-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .project-item {
+      border-radius: var(--radius-md);
+      padding: 10px 10px 8px;
+      background: var(--card-soft);
+      border: 1px solid var(--border-soft);
+    }
+
+    .project-item h3 {
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .project-item p {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .faq-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .faq-item {
+      border-radius: var(--radius-md);
+      padding: 9px 10px 7px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.33);
+    }
+
+    .faq-item h3 {
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .faq-item p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .contact-card {
+      margin-top: 26px;
+      background:
+        radial-gradient(circle at top, rgba(8, 47, 73, 0.55) 0, #020617 60%);
+      border-radius: 24px;
+      padding: 18px 18px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.8);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .contact-header h2 {
+      font-size: 17px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .contact-body {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-grid span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-grid code {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 26px 0 40px;
+      }
+      .page {
+        padding-inline: 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <header>
-      <div>
-        <div style="font-size: 14px; color: var(--text-dim);">LATTICE WORKS</div>
-        <div style="font-size: 18px; margin-top: 4px;">Fast, high-production software systems</div>
+      <div class="brand">
+        <div class="brand-mark">LW</div>
+        <div class="brand-text">
+          <span>Lattice Works</span>
+          <span>Backend systems & automation studio</span>
+        </div>
+      </div>
+      <div class="tag-row">
+        <div class="pill pill-strong">
+          <span class="pill-dot"></span>
+          <span>Production systems, async-first</span>
+        </div>
+        <div class="pill">
+          <span>One operator • No calls by default</span>
+        </div>
       </div>
     </header>
 
-    <div class="hero-card">
-      <div class="tag">PRODUCTION-READY, SHIPPED FAST</div>
+    <main>
+      <section class="hero-card">
+        <div class="hero-tag">
+          <div class="hero-tag-icon"></div>
+          <span>Internal systems, shipped in weeks</span>
+        </div>
 
-      <h1>Architected like a <span class="accent">system</span>,<br />delivered like a sprint.</h1>
+        <h1 class="hero-title">
+          Backends, dashboards, and automations
+          <span>that don’t need a big team.</span>
+        </h1>
 
-      <p>
-        Lattice Works is a small, anonymous studio that builds web apps, dashboards,
-        and internal systems with a bias toward speed and polish. Production value
-        that feels like you hired a full team — built by one operator.
+        <p class="hero-subtitle">
+          Lattice Works is a small, anonymous studio focused on the
+          <b>invisible infrastructure behind products</b> — referral systems,
+          dashboards, APIs, and workflow automation. Everything runs fully async:
+          you stay focused on the business while the system takes shape.
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>Backend & systems only</strong>
+            <span>Dashboards, admin tools, automations, API surfaces — the work
+              that keeps products moving.</span>
+          </div>
+          <div class="metric">
+            <strong>Async by default</strong>
+            <span>Written scopes, weekly updates, and preview links. Calls are
+              the exception, not the operating mode.</span>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a
+            class="btn-primary"
+            href="mailto:projects@latticeworks.us?subject=Project%20inquiry&body=You%20can%20answer%20in%20a%20few%20lines%3A%0A%0A-%20What%20system%20you%20want%20built%20or%20fixed%0A-%20Who%20will%20use%20it%0A-%20Why%20it%20matters%20now%0A-%20Any%20hard%20timeline%0A-%20Links%20or%20docs%20if%20you%20have%20them%0A">
+            <span>✉️</span>
+            <span>Send a system outline</span>
+          </a>
+          <a href="#work" class="btn-secondary">
+            <span>▸</span>
+            <span>See representative builds</span>
+          </a>
+        </div>
+
+        <p class="hero-note">
+          No pitch decks, no “about the founder” essay — just backend, automation,
+          and internal product work oriented around shipping.
+        </p>
+
+        <div class="hero-list">
+          <div class="chip">
+            <span class="chip-label">01</span>
+            <span>Referral & payout systems with dashboards and review flows</span>
+          </div>
+          <div class="chip">
+            <span class="chip-label">02</span>
+            <span>Trading & data screeners wired for real strategies</span>
+          </div>
+          <div class="chip">
+            <span class="chip-label">03</span>
+            <span>Internal tools that replace spreadsheets & one-off scripts</span>
+          </div>
+          <div class="chip">
+            <span class="chip-label">04</span>
+            <span>API surfaces, webhooks, and automation glue</span>
+          </div>
+        </div>
+
+        <div class="hero-orbit">
+          <div class="hero-orbit-inner"></div>
+        </div>
+      </section>
+
+      <aside class="side-card">
+        <div class="side-section">
+          <div class="section-label">Focus</div>
+          <div class="mini-title">What Lattice Works actually does</div>
+          <div class="mini-sub">
+            A narrow band of backend and internal-product work, reused and refined
+            across projects.
+          </div>
+          <div class="pill-grid">
+            <span class="pill-small">Dashboards & admin panels</span>
+            <span class="pill-small">Referral & payout logic</span>
+            <span class="pill-small">Internal & ops tooling</span>
+            <span class="pill-small">API & webhook design</span>
+            <span class="pill-small">Automation workflows</span>
+            <span class="pill-small">Data ingestion & screens</span>
+          </div>
+        </div>
+
+        <div class="side-section">
+          <div class="mini-title">What “production-grade” means here</div>
+          <div class="mini-sub">
+            Not a demo. A system you’re comfortable wiring into the rest of your stack.
+          </div>
+          <div class="pill-grid">
+            <span class="pill-small">Deliberate data models</span>
+            <span class="pill-small">Predictable API behavior</span>
+            <span class="pill-small">Readable, handoff-ready code</span>
+            <span class="pill-small">Simple deployment story</span>
+            <span class="pill-small">Docs that don’t rot instantly</span>
+          </div>
+        </div>
+
+        <div class="side-section">
+          <div class="mini-title">Typical stack</div>
+          <div class="mini-sub">
+            Stack flexes per project. The constant is clear boundaries and boring reliability.
+          </div>
+          <div class="pill-grid">
+            <span class="pill-small">FastAPI / Node</span>
+            <span class="pill-small">TypeScript / React</span>
+            <span class="pill-small">PostgreSQL / SQL</span>
+            <span class="pill-small">Stripe / payment rails</span>
+            <span class="pill-small">Zapier / Make / n8n</span>
+            <span class="pill-small">OpenAI / AI workflows</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="grid" id="process">
+      <article class="card">
+        <h2>How projects run</h2>
+        <p>
+          The aim is simple: go from “this lives in my head or a messy doc” to
+          “this is a working system” without introducing standing meetings or a
+          second job for you.
+        </p>
+        <ul class="steps">
+          <li class="step">
+            <div class="step-index">1</div>
+            <div>
+              <div class="step-title">Outline</div>
+              <div class="step-text">
+                You send a short description of what you want built or fixed:
+                what it should do, who uses it, and any constraints. Existing docs,
+                screenshots, and code links are welcome but not required.
+              </div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-index">2</div>
+            <div>
+              <div class="step-title">Architecture & scope</div>
+              <div class="step-text">
+                You get clarifying questions and a proposed shape: entities,
+                surfaces, data flows, and where automations or AI fit. Work is
+                sliced into phases that can ship independently.
+              </div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-index">3</div>
+            <div>
+              <div class="step-title">Pricing & milestones</div>
+              <div class="step-text">
+                Each phase gets a fixed price and acceptance criteria, or a tight
+                hourly band if that’s a better fit. It’s obvious when something is “done.”
+              </div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-index">4</div>
+            <div>
+              <div class="step-title">Async build loops</div>
+              <div class="step-text">
+                You get written updates and preview links. You respond in your own
+                time. The work moves forward without ceremony or recurring calls.
+              </div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-index">5</div>
+            <div>
+              <div class="step-title">Handoff</div>
+              <div class="step-text">
+                Deliverables include code, a short implementation note, and
+                guidance on how to plug it into your existing stack or team. You
+                can keep working together or treat it as a clean, finished unit.
+              </div>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <section id="work">
+        <article class="card">
+          <h2>Representative builds</h2>
+          <p>
+            Names and logos stay off the page on purpose. These are simplified
+            examples of actual systems and in-progress work.
+          </p>
+          <ul class="project-list">
+            <li class="project-item">
+              <h3>Referral payout dashboard & review workflow</h3>
+              <div class="project-meta">
+                Admin dashboard • commission logic • exportable reports
+              </div>
+              <p>
+                Built an internal dashboard for a referral program so a small team
+                could review, validate, and approve payouts tied to user activity.
+                Included role-based access, automated calculations, and exportable
+                summaries ready to feed into existing payout rails. The system now
+                acts as the single source of truth between growth and finance.
+              </p>
+            </li>
+            <li class="project-item">
+              <h3>Multi-asset trading signal screener</h3>
+              <div class="project-meta">
+                Strategy ingestion • asset scoring • monitoring surface
+              </div>
+              <p>
+                Implemented a backend and basic dashboard for screening FX/crypto/equities
+                against live and strategy-defined conditions. The system ingests
+                strategy outputs, scores assets, and exposes them via a clean API
+                and UI, so a founder can reason about where to apply their bot
+                without wrestling with spreadsheets.
+              </p>
+            </li>
+            <li class="project-item">
+              <h3>Founder-facing internal tooling</h3>
+              <div class="project-meta">
+                Internal tools • ops metrics • light automation
+              </div>
+              <p>
+                Replaced a mix of one-off scripts and shared docs with a focused
+                internal panel: key metrics, manual override controls, and a few
+                targeted automations. The result: fewer “can you just pull this
+                for me?” messages to engineers and a much clearer mental model of
+                what’s happening day to day.
+              </p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Common questions</h2>
+          <p>
+            Lattice Works is intentionally small, quiet, and execution-biased.
+            A few things that help decide if it’s a fit:
+          </p>
+          <ul class="faq-list">
+            <li class="faq-item">
+              <h3>Who is behind this?</h3>
+              <p>
+                One operator, anonymous by design. The emphasis is on clear systems
+                and shipped work, not personal branding. If you need a large team
+                photo and a client logo wall, this isn’t that.
+              </p>
+            </li>
+            <li class="faq-item">
+              <h3>How do you communicate?</h3>
+              <p>
+                Primarily in writing: email and short docs. This keeps scopes tight,
+                decisions searchable, and work async. Calls are occasional and only
+                when they materially unblock the build.
+              </p>
+            </li>
+            <li class="faq-item">
+              <h3>What size projects make sense?</h3>
+              <p>
+                Best fits are well-bounded systems: dashboards, internal tools,
+                referral engines, automations, and subsystems inside larger products.
+                Long, committee-driven projects with shifting ownership are a poor fit.
+              </p>
+            </li>
+            <li class="faq-item">
+              <h3>Can you plug into an existing stack?</h3>
+              <p>
+                Yes. It’s common to wire a new system into an existing codebase or
+                service, as long as boundaries and responsibilities are clear.
+              </p>
+            </li>
+          </ul>
+        </article>
+      </section>
+    </section>
+
+    <section class="contact-card" id="contact">
+      <div class="contact-header">
+        <h2>Open to targeted builds and short, focused engagements</h2>
+        <div class="badge">Backend, dashboards, automations — async-first</div>
+      </div>
+      <p class="contact-body">
+        If you already have a rough idea of the system you need, a short written
+        brief is enough to start. You’ll get a reply with follow-up questions,
+        a suggested shape for the work, and whether it’s a strong fit.
       </p>
 
-      <div class="cta-row">
-        <a class="cta" href="mailto:tminot@pm.me">Send a project outline</a>
-        <a class="cta secondary" href="#">See representative builds</a>
+      <div class="contact-grid">
+        <span>📧 <strong>Email</strong> <code>projects@latticeworks.us</code></span>
+        <span>📝 <strong>Helpful to include</strong> <code>what • who • why now • rough timeline</code></span>
       </div>
 
-      <p style="margin-top: 30px; color: var(--text-dim); max-width: 700px;">
-        No filler pages. No marketing fluff. Just product engineering, UI, and backend
-        designed for things that ship.
-      </p>
-    </div>
-
-    <section>
-      <h2>Focus</h2>
-      <div class="pill">Web apps & product UIs</div>
-      <div class="pill">Analytics dashboards</div>
-      <div class="pill">Screener & filter tools</div>
-      <div class="pill">Internal & ops tooling</div>
-      <div class="pill">Technical architecture</div>
+      <div class="contact-actions">
+        <a
+          class="btn-primary"
+          href="mailto:projects@latticeworks.us?subject=Project%20inquiry&body=You%20can%20answer%20in%20a%20few%20lines%3A%0A%0A-%20What%20you%20want%20built%20or%20fixed%0A-%20Who%20will%20use%20it%0A-%20Why%20it%20matters%20now%0A-%20Any%20timeline%20constraints%0A-%20Links%20or%20docs%20if%20you%20have%20them%0A">
+          <span>✉️</span>
+          <span>Send a brief</span>
+        </a>
+        <span class="contact-note">
+          Expect a written reply, not a scheduling link.
+        </span>
+      </div>
     </section>
 
-    <section>
-      <h2>What “high-production” means</h2>
-      <div class="pill">Clean, modern frontends</div>
-      <div class="pill">Thought-out data models</div>
-      <div class="pill">Readable, handoff-able code</div>
-      <div class="pill">Docs that don’t rot</div>
-      <div class="pill">Clear API surfaces</div>
-    </section>
-
-    <section>
-      <h2>Typical Stack</h2>
-      <div class="pill">TypeScript / JavaScript</div>
-      <div class="pill">FastAPI / Node APIs</div>
-      <div class="pill">PostgreSQL / SQL</div>
-      <div class="pill">Stripe / payment rails</div>
-      <div class="pill">Crypto / wallet integrations</div>
-    </section>
+    <footer>
+      <span>© <span id="year"></span> Lattice Works</span>
+      <span>Quiet studio, loud systems.</span>
+    </footer>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
 
